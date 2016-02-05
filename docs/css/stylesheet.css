@@ -4,7 +4,3 @@
 .clearfix { zoom: 1; }
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
-
-.row { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
-
-.icon { width: 50px; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }

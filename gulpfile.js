@@ -7,6 +7,13 @@ var gulp       = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer');
 
 
+// html
+gulp.task('html', function() {
+  return gulp.src('./docs/**/*.html')
+    .pipe(browserSync.reload({stream:true}));
+});
+
+
 ////////////////////////////////////////////////////////////////////
 // docs
 ////////////////////////////////////////////////////////////////////
@@ -17,7 +24,7 @@ gulp.task('docs', function() {
 		.on('error', function (err) { console.log(err.message); })
 		.pipe(autoprefixer('> 5%, last 2 versions', 'Firefox >= 30', 'Opera >= 12', 'Safari >= 5', 'Explorer >= 9'))
 		.pipe(gulp.dest('./docs/css'))
-		.pipe(browserSync.stream({}))
+		.pipe(browserSync.reload({stream:true}))
 		.pipe(notify({ message: "sass file: <%= file.relative %>"}));
 });
 
@@ -32,7 +39,7 @@ gulp.task('build', function() {
 		.on('error', function (err) { console.log(err.message); })
 		.pipe(autoprefixer('> 5%, last 2 versions', 'Firefox >= 30', 'Opera >= 12', 'Safari >= 5', 'Explorer >= 9'))
 		.pipe(gulp.dest('./dist/css'))
-		.pipe(browserSync.stream({}))
+		.pipe(browserSync.reload({stream:true}))
 		.pipe(notify({ message: "sass file: <%= file.relative %>"}));
 });
 
@@ -54,5 +61,7 @@ gulp.task('browser-sync', function() {
 gulp.task('default', ['browser-sync'], function() {
 	gulp.watch('docs/**/*.scss', ['docs']);
 	gulp.watch('build/**/*.scss', ['build']);
-	gulp.watch('./*.html', browserSync.reload);
+	gulp.watch('./**/*.html', ['html']);
 });
+
+
