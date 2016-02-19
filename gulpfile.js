@@ -4,29 +4,8 @@ var gulp       = require('gulp'),
 	rename       = require('gulp-rename'),
 	sass         = require('gulp-ruby-sass'),
 	notify       = require('gulp-notify'),
+  fileinclude  = require('gulp-file-include'),
 	autoprefixer = require('gulp-autoprefixer');
-
-
-// html
-gulp.task('html', function() {
-  return gulp.src('./docs/**/*.html')
-    .pipe(browserSync.reload({stream:true}));
-});
-
-
-////////////////////////////////////////////////////////////////////
-// docs
-////////////////////////////////////////////////////////////////////
-
-// sass
-gulp.task('docs', function() {
-	return sass('./docs/scss/stylesheet.scss', { style: 'compact' })
-		.on('error', function (err) { console.log(err.message); })
-		.pipe(autoprefixer('> 5%, last 2 versions', 'Firefox >= 30', 'Opera >= 12', 'Safari >= 5', 'Explorer >= 9'))
-		.pipe(gulp.dest('./docs/css'))
-		.pipe(browserSync.reload({stream:true}))
-		.pipe(notify({ message: "sass file: <%= file.relative %>"}));
-});
 
 
 ////////////////////////////////////////////////////////////////////
@@ -35,12 +14,24 @@ gulp.task('docs', function() {
 
 //sass
 gulp.task('build', function() {
-	return sass('./build/veegee.scss', { style: 'compact' })
+	return sass('./build/scss/stylesheet.scss', { style: 'compact' })
 		.on('error', function (err) { console.log(err.message); })
 		.pipe(autoprefixer('> 5%, last 2 versions', 'Firefox >= 30', 'Opera >= 12', 'Safari >= 5', 'Explorer >= 9'))
 		.pipe(gulp.dest('./dist/css'))
 		.pipe(browserSync.reload({stream:true}))
 		.pipe(notify({ message: "sass file: <%= file.relative %>"}));
+});
+
+// html
+gulp.task('veegee', function() {
+  return gulp.src(['./build/**/*.html', '!./build/svg/**/*.html'])
+    .pipe(fileinclude({
+      prefix: '@@',
+      basepath: './build/'
+    }))
+    .on('error', function (err) { console.log(err.message); })
+    .pipe(gulp.dest('./dist/html/'))
+    .pipe(browserSync.stream({}))
 });
 
 
@@ -59,9 +50,8 @@ gulp.task('browser-sync', function() {
 
 
 gulp.task('default', ['browser-sync'], function() {
-	gulp.watch('docs/**/*.scss', ['docs']);
 	gulp.watch('build/**/*.scss', ['build']);
-	gulp.watch('./**/*.html', ['html']);
+	gulp.watch('./build/**/*.html', ['veegee']);
 });
 
 
