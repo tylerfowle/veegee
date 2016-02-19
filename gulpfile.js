@@ -24,7 +24,7 @@ gulp.task('build', function() {
 
 // html
 gulp.task('veegee', function() {
-  return gulp.src(['./build/**/*.html', '!./build/svg/**/*.html'])
+  return gulp.src(['./build/**/*.html', '!./build/svg/**/*'])
     .pipe(fileinclude({
       prefix: '@@',
       basepath: './build/'
@@ -51,7 +51,8 @@ gulp.task('browser-sync', function() {
 
 gulp.task('default', ['browser-sync'], function() {
 	gulp.watch('build/**/*.scss', ['build']);
-	gulp.watch('./build/**/*.html', ['veegee']);
+  gulp.watch('./build/**/*.html', ['veegee']);
+	gulp.watch('./build/svg/*', ['veegee']);
 });
 
 
