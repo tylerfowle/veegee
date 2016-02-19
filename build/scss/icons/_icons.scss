@@ -2,35 +2,11 @@
 // icons
 ////////////////////////////////////////////////////////////////////
 
-svg.vg {
+.vg {
    display: inline-block;
    fill: currentColor;
    vertical-align: middle;
-   width: 20px;
-   height: 20px;
    shape-rendering: auto;
    // shape-rendering: crispEdges;
    // shape-rendering: geometricPrecision;
-   // background: red; //dev
-}
-
-
-svg.vg.vg-16 {
-  height: 16px;
-  width: 16px;
-}
-
-svg.vg.vg-32 {
-  height: 32px;
-  width: 32px;
-}
-
-svg.vg.vg-64 {
-  height: 64px;
-  width: 64px;
-}
-
-svg.vg.vg-128 {
-  height: 128px;
-  width: 128px;
 }
