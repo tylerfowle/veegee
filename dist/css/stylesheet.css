@@ -1,10 +1,6 @@
 @import url(scss/normalize.css);
 .vg { display: inline-block; fill: currentColor; vertical-align: middle; shape-rendering: auto; }
 
-.menu-button { width: 400px; }
+.menu-button { width: 200px; background: red; margin: 30px; }
 
-.vg-menu { stroke: #222; fill: none; }
-.vg-menu rect { margin-bottom: 40px; position: relative; right: 20px; }
-.vg-menu rect:nth-child(1) { -webkit-transform: translateY(-60%); transform: translateY(-60%); }
-.vg-menu rect:nth-child(3) { -webkit-transform: translateY(60%); transform: translateY(60%); }
-.vg-menu rect:nth-child(2) { display: none; }
+.vg-menu { fill: #222; }

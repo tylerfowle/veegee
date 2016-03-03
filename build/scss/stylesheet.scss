@@ -8,26 +8,11 @@
 
 
 .menu-button {
-  width: 400px;
+  width: 200px;
+  background: red;
+  margin: 30px;
 }
 
-
 .vg-menu {
-  stroke: #222;
-  fill: none;
-
-  rect {
-    margin-bottom: 40px;
-    position: relative;
-    right: 20px;
-  }
-  rect:nth-child(1) {
-    transform: translateY(-60%);
-  }
-  rect:nth-child(3) {
-    transform: translateY(60%);
-  }
-  rect:nth-child(2) {
-    display: none;
-  }
+  fill: #222;
 }
